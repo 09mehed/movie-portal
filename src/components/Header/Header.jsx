@@ -1,7 +1,17 @@
-import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import userIcon from '../../assets/user.png'
+import { AuthContext } from '../../authProvider/AuthProvider';
 
 const Header = () => {
+    const { user, handleSignOut } = useContext(AuthContext)
+    const [userPhoto, setUserPhoto] = useState(user?.photoURL || userIcon);
+
+    useEffect(() => {
+        if (user) {
+            setUserPhoto(user.photoURL || userIcon);
+        }
+    }, [user]);
     return (
         <div className="navbar bg-base-100 w-11/12 mx-auto p-5">
             <div className="navbar-start">
@@ -23,15 +33,11 @@ const Header = () => {
                     <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                        <li><a>Item 1</a></li>
-                        <li>
-                            <a>Parent</a>
-                            <ul className="p-2">
-                                <li><a>Submenu 1</a></li>
-                                <li><a>Submenu 2</a></li>
-                            </ul>
-                        </li>
-                        <li><a>Item 3</a></li>
+                        <NavLink to='/' className='pr-2'>Home</NavLink>
+                        <NavLink to='allMovies' className='pr-2'>All Movies</NavLink>
+                        <NavLink to='addMovie' className='pr-2'>Add Movie</NavLink>
+                        <NavLink to='favourite' className='pr-2'>My Favorites</NavLink>
+                        <NavLink to='/share' className='pr-2'>Share</NavLink>
                     </ul>
                 </div>
                 <a className="text-2xl font-bold">MOVIE PORTAL</a>
@@ -46,7 +52,26 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link className='btn btn-success' to='signin'>Login</Link>
+                {user && user?.email ? (
+                    <div className="relative group">
+                        <img
+                            className="w-12 h-12 rounded-full cursor-pointer border-2 border-white"
+                            src={userPhoto}
+                            alt="User Profile"
+                        />
+                        <span className="absolute left-1/2 transform -translate-x-1/2 bottom-[-30px] bg-black text-white text-sm rounded-md py-1 px-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                            {user?.displayName || "User"}
+                        </span>
+                    </div>
+                ) : (
+                    <img className="w-12 h-12 rounded-full" src={userIcon} alt="Default User Icon" />
+                )}
+
+                {
+                    user && user?.email ? (<button onClick={handleSignOut} className="btn btn-primary">Log-Out</button>) : (<NavLink to='signin'>
+                        <button className="btn btn-primary">Login</button>
+                    </NavLink>)
+                }
             </div>
         </div>
     );
