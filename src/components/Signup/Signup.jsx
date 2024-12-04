@@ -2,9 +2,11 @@ import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../authProvider/AuthProvider';
 import { Helmet } from 'react-helmet';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Signup = () => {
-    const {handleRegister, manageProfile, handleGoogleLogin, setUser} = useContext(AuthContext)
+    const { handleRegister, manageProfile, handleGoogleLogin, setUser } = useContext(AuthContext)
     const location = useLocation()
     const navigate = useNavigate()
     const [error, setError] = useState()
@@ -17,37 +19,38 @@ const Signup = () => {
         const photoURL = e.target.photoURL.value
         const password = e.target.password.value
         const conPassword = e.target.conPassword.value
-        if(password !== conPassword){
+        if (password !== conPassword) {
             setError("Password didn't match")
             return;
         }
-        if(!/^(?=.*[a-z])(?=.*[A-Z]).{6,}$/.test(password)){
+        if (!/^(?=.*[a-z])(?=.*[A-Z]).{6,}$/.test(password)) {
             setError("please strong password")
             return;
         }
         handleRegister(email, password)
-        .then(res => {
-            manageProfile({displayName: name, photoURL: photoURL})
-            .then(() => {
-                setUser((prevUser) => {
-                    return{...prevUser, displayName: name, photoURL: photoURL}
-                })
-                navigate("/")
+
+            .then(res => {
+                manageProfile({ displayName: name, photoURL: photoURL })
+                    .then(() => {
+                        setUser((prevUser) => {
+                            return { ...prevUser, displayName: name, photoURL: photoURL }
+                        })
+                        navigate(location?.state?.from || "movie-details"); 
+                    })
+
+                const user = res.user
+                setUser(user)
+                navigate(location?.state ? location.state : "/")
+                toast.success("Successfully logged in!", {
+                    position: "top-center",
+                });
             })
-          
-            const user = res.user
-            setUser(user)
-            navigate(location?.state ? location.state : "/") 
-            toast.success("Successfully logged in!", {
-                position: "top-center",
-            });
-        })
     }
     const googleLoginHandler = () => {
         handleGoogleLogin()
-        .then(() => {
-            navigate(location?.state ? location.state : "/") 
-        })
+            .then(() => {
+                navigate(location?.state ? location.state : "/")
+            })
     }
     return (
         <div className="w-11/12 mx-auto py-5">
@@ -72,7 +75,7 @@ const Signup = () => {
                                 required
                             />
                         </div>
-                        
+
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-semibold mb-2">
                                 Email
@@ -85,7 +88,7 @@ const Signup = () => {
                                 required
                             />
                         </div>
-                        
+
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-semibold mb-2">
                                 Photo URL
@@ -98,7 +101,7 @@ const Signup = () => {
                                 required
                             />
                         </div>
-                        
+
                         <div className="mb-6">
                             <label className="block text-gray-700 text-sm font-semibold mb-2">
                                 Password
@@ -114,7 +117,7 @@ const Signup = () => {
 
                         <div className="mb-6">
                             <label className="block text-gray-700 text-sm font-semibold mb-2">
-                               Confirm Password
+                                Confirm Password
                             </label>
                             <input
                                 name="conPassword"
@@ -124,7 +127,7 @@ const Signup = () => {
                                 required
                             />
                         </div>
-                        
+
                         <button
                             type="submit"
                             className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300"
@@ -132,7 +135,7 @@ const Signup = () => {
                             Register
                         </button>
                     </form>
-                    
+
                     {error && <p className="text-red-500">{error}</p>}
                     <p>Do not have any account? Please <Link className="text-red-600 font-semibold" to='/signin'>Login</Link> or <button onClick={googleLoginHandler} className="text-green-600 font-semibold">Google</button></p>
                 </div>

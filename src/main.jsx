@@ -16,6 +16,7 @@ import Favourite from './components/Favourite/Favourite';
 import Share from './components/Share/Share';
 import AuthProvider from './authProvider/AuthProvider';
 import AddAMovie from './components/AddAMovie/AddAMovie';
+import MovieDetails from './components/MovieDetails/MovieDetails';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: 'allMovies',
         element: <AllMovies></AllMovies>
+      },
+      {
+        path:'movie-details/:id',
+        element: <MovieDetails></MovieDetails>,
       },
       {
         path: 'addMovie',
