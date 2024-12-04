@@ -15,6 +15,7 @@ import Addmovie from './components/AddMovie/Addmovie';
 import Favourite from './components/Favourite/Favourite';
 import Share from './components/Share/Share';
 import AuthProvider from './authProvider/AuthProvider';
+import AddAMovie from './components/AddAMovie/AddAMovie';
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,8 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home></Home>
+        element: <Home></Home>,
+        loader: () => fetch('http://localhost:3000/movie')
       },
       {
         path: 'allMovies',
@@ -40,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: 'share',
         element: <Share></Share>
+      },
+      {
+        path: 'addAMovie',
+        element: <AddAMovie></AddAMovie>
       },
       {
         path: 'signup',

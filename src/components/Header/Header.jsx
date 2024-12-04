@@ -13,7 +13,7 @@ const Header = () => {
         }
     }, [user]);
     return (
-        <div className="navbar bg-base-100 w-11/12 mx-auto p-5">
+        <div className="navbar bg-base-100 w-11/12 mx-auto p-5 sticky top-0 z-50">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -38,6 +38,7 @@ const Header = () => {
                         <NavLink to='addMovie' className='pr-2'>Add Movie</NavLink>
                         <NavLink to='favourite' className='pr-2'>My Favorites</NavLink>
                         <NavLink to='/share' className='pr-2'>Share</NavLink>
+                        <NavLink to='/addAMovie' className='pr-2'>Add A Movie</NavLink>
                     </ul>
                 </div>
                 <a className="text-2xl font-bold">MOVIE PORTAL</a>
@@ -49,6 +50,7 @@ const Header = () => {
                     <NavLink to='addMovie' className='pr-2'>Add Movie</NavLink>
                     <NavLink to='favourite' className='pr-2'>My Favorites</NavLink>
                     <NavLink to='/share' className='pr-2'>Share</NavLink>
+                    <NavLink to='/addAMovie' className='pr-2'>Add A Movie</NavLink>
                 </ul>
             </div>
             <div className="navbar-end">
