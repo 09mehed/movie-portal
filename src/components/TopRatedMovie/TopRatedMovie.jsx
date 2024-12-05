@@ -39,9 +39,10 @@ const TopRatedMovie = () => {
                                 alt={movie.title}
                                 className="w-full h-64 object-cover rounded-md"
                             />
-                            <h3 className="mt-4 text-lg font-bold">{movie.title}</h3>
-                            <p className="text-sm text-gray-600">Genre: {movie.genre}</p>
-                            <p className="text-sm text-gray-600">Rating: {movie.rating}</p>
+                            <h3 className="mt-4 text-xl text-center font-bold">{movie.title}</h3>
+                            <p className='text-center'>{movie.summary}</p>
+                            <p className="text-xl text-gray-600">Genre: {movie.genre}</p>
+                            <p className="text-xl text-gray-600">Rating: {movie.rating}</p>
                         </div>
                     ))}
                 </div>
