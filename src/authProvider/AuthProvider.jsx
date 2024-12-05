@@ -11,17 +11,32 @@ const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
     const [userProfile, setUserProfile] = useState(null);
+    const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+    const toggleTheme = () => {
+        const newTheme = theme === "light" ? "dark" : "light";
+        setTheme(newTheme);
+        localStorage.setItem("theme", newTheme);
+    };
+
+    useEffect(() => {
+        document.documentElement.setAttribute("data-theme", theme);
+    }, [theme]);
     
     const handleRegister = (email,password) => {
-       return createUserWithEmailAndPassword(auth, email, password)
+        setLoading(true);
+        return createUserWithEmailAndPassword(auth, email, password)
     }
     const handleLogin = (email, password) => {
+        setLoading(true);
        return signInWithEmailAndPassword(auth, email, password)
     }
     const handleSignOut = () => {
+        setLoading(true);
         return signOut(auth)
     }
     const handleGoogleLogin = () => {
+        setLoading(true);
         return signInWithPopup(auth, googleProvider)
     }
     const manageProfile = (manageData) => {
@@ -37,7 +52,9 @@ const AuthProvider = ({children}) => {
         setUser,
         manageProfile,
         loading,
-        userProfile
+        userProfile,
+        theme, 
+        toggleTheme
     }
 
     useEffect(() => {

@@ -4,7 +4,7 @@ import userIcon from '../../assets/user.png'
 import { AuthContext } from '../../authProvider/AuthProvider';
 
 const Header = () => {
-    const { user, handleSignOut } = useContext(AuthContext)
+    const { user, handleSignOut, theme, toggleTheme } = useContext(AuthContext)
     const [userPhoto, setUserPhoto] = useState(user?.photoURL || userIcon);
 
     useEffect(() => {
@@ -52,6 +52,9 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end gap-3">
+                <button onClick={toggleTheme} className="btn btn-secondary">
+                    {theme === "light" ? "Dark Mode" : "Light Mode"}
+                </button>
                 {user && user?.email ? (
                     <div className="relative group">
                         <img
