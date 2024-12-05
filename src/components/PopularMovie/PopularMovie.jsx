@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 const PopularMovie = () => {
-    const [featuredMovies, setFeaturedMovies] = useState([]);
     const [popularMovies, setPopularMovies] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -12,11 +11,6 @@ const PopularMovie = () => {
                 return res.json();
             })
             .then((data) => {
-                // Featured Movies: প্রথম ৩টি মুভি
-                const featured = data.slice(0, 3);
-                setFeaturedMovies(featured);
-
-                // Popular Movies: Genre "Action" এর মুভি
                 const actionMovies = data.sort((a, b) => a.duration - b.duration).slice(0, 3);
                 setPopularMovies(actionMovies);
 

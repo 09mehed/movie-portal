@@ -44,11 +44,11 @@ const Header = () => {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1 text-xl">
-                    <NavLink to='/' className='pr-2'>Home</NavLink>
-                    <NavLink to='allMovies' className='pr-2'>All Movies</NavLink>
-                    <NavLink to='favourite' className='pr-2'>My Favorites</NavLink>
-                    <NavLink to='/share' className='pr-2'>Share</NavLink>
-                    <NavLink to='/addAMovie' className='pr-2'>Add Movie</NavLink>
+                    <NavLink className={({ isActive }) => isActive ? "text-blue-500 pr-2" : "pr-2"} to='/' >Home</NavLink>
+                    <NavLink to='allMovies' className={({ isActive }) => isActive ? "text-blue-500 pr-2" : "pr-2"}>All Movies</NavLink>
+                    <NavLink to='favourite' className={({ isActive }) => isActive ? "text-blue-500 pr-2" : "pr-2"}>My Favorites</NavLink>
+                    <NavLink to='/share' className={({ isActive }) => isActive ? "text-blue-500 pr-2" : "pr-2"}>Share</NavLink>
+                    <NavLink to='/addAMovie' className={({ isActive }) => isActive ? "text-blue-500 pr-2" : "pr-2"}>Add Movie</NavLink>
                 </ul>
             </div>
             <div className="navbar-end gap-3">
