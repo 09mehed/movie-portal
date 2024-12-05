@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
 const AllMovies = () => {
@@ -23,6 +24,9 @@ const AllMovies = () => {
 
     return (
         <div className="w-11/12 mx-auto py-6">
+            <Helmet>
+                <title>MOVIE PORTAL | AllMovies</title>
+            </Helmet>
             <h2 className="text-3xl font-bold text-center mb-6">All Movies</h2>
             <input type="search" value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)} name="search" id="" placeholder='search movie' className="w-full text-xl mb-6 p-2 border rounded-md text-center" />

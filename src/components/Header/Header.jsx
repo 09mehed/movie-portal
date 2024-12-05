@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import userIcon from '../../assets/user.png'
 import { AuthContext } from '../../authProvider/AuthProvider';
+import { Helmet } from 'react-helmet';
 
 const Header = () => {
     const { user, handleSignOut, theme, toggleTheme } = useContext(AuthContext)
@@ -14,6 +15,9 @@ const Header = () => {
     }, [user]);
     return (
         <div className="navbar bg-base-100 w-11/12 mx-auto p-5 sticky top-0 z-50">
+            <Helmet>
+                <title>MOVIE PORTAL | Home</title>
+            </Helmet>
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

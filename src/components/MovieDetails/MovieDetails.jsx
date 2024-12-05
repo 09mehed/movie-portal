@@ -87,6 +87,7 @@ const MovieDetails = () => {
 
     return (
         <div className="w-11/12 mx-auto py-3">
+            
             <h2 className="text-3xl font-bold text-center mb-3">{movie.title}</h2>
             <p className="text-center py-3 text-2xl font-semibold">{movie.summary}</p>
             <div className="flex justify-center mb-6">
@@ -124,11 +125,6 @@ const MovieDetails = () => {
                 >
                     Add to Favorite
                 </button>
-                {/* <Link to={`update-movie/${_id}`}
-                    className="px-6 py-2 text-white bg-green-600 hover:bg-green-700 rounded-md shadow-md"
-                >
-                    Update Movie
-                </Link> */}
                 <button onClick={() => navigate(`/update-movie/${movie._id}`)} className="px-6 py-2 text-white bg-green-600 hover:bg-green-700 rounded-md shadow-md" >
                     Update Movie
                 </button>
