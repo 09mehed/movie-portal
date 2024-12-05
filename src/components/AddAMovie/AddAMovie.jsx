@@ -340,6 +340,7 @@ const AddMovie = () => {
     const [movieData, setMovieData] = useState({
         photo: "",
         title: "",
+        email: "",
         genre: [],
         duration: "",
         year: "",
@@ -347,30 +348,25 @@ const AddMovie = () => {
         summary: "",
     });
 
-    const genres = ["Comedy", "Drama", "Horror", "Action", "Romance"]; // Dropdown genres
-    const years = ["2024", "2023", "2022", "2021", "2020"]; // Release years dropdown
-
-    // Handle input changes
+    const genres = ["Comedy", "Drama", "Horror", "Action", "Romance"];
+    const years = ["2024", "2023", "2022", "2021", "2020", "2019", "2018", "2019"]; 
+   
     const handleChange = (e) => {
         const { name, value } = e.target;
         setMovieData({ ...movieData, [name]: value });
     };
 
-    // Handle genre selection
     const handleGenreChange = (e) => {
         const selectedGenres = Array.from(e.target.selectedOptions, (option) => option.value);
         setMovieData({ ...movieData, genre: selectedGenres });
     };
 
-    // Handle rating
     const handleRatingChange = (rate) => {
         setMovieData({ ...movieData, rating: rate });
     };
 
-    // Form validation
     const validateForm = () => {
         if (!movieData.photo || !/^https?:\/\/.+\.(jpg|jpeg|png|webp|gif)$/.test(movieData.photo)) {
-            // toast.error("Please provide a valid image link for the poster.");
             Swal.fire({
                 title: "Oops...",
                 text: "Please provide a valid image link for the poster.",
@@ -378,7 +374,6 @@ const AddMovie = () => {
             return false;
         }
         if (!movieData.title || movieData.title.length < 2) {
-            toast.error("Title must have at least 2 characters.");
             Swal.fire({
                 title: "Oops...",
                 text: "Title must have at least 2 characters.",
@@ -386,7 +381,6 @@ const AddMovie = () => {
             return false;
         }
         if (movieData.genre.length === 0) {
-            toast.error("Please select at least one genre.");
             Swal.fire({
                 title: "Oops...",
                 text: "Please select at least one genre.",
@@ -394,7 +388,6 @@ const AddMovie = () => {
             return false;
         }
         if (!movieData.duration || movieData.duration < 60) {
-            // toast.error("Duration must be at least 60 minutes.");
             Swal.fire({
                 title: "Oops...",
                 text: "Duration must be at least 60 minutes.",
@@ -402,7 +395,6 @@ const AddMovie = () => {
             return false;
         }
         if (!movieData.year) {
-            // toast.error("Please select a release year.");
             Swal.fire({
                 title: "Oops...",
                 text: "Please select a release year.",
@@ -410,7 +402,6 @@ const AddMovie = () => {
             return false;
         }
         if (movieData.rating === 0) {
-            // toast.error("Please select a rating.");
             Swal.fire({
                 title: "Oops...",
                 text: "Please select a rating.",
@@ -418,7 +409,6 @@ const AddMovie = () => {
             return false;
         }
         if (!movieData.summary || movieData.summary.length < 10) {
-            // toast.error("Summary must have at least 10 characters.");
             Swal.fire({
                 title: "Oops...",
                 text: "Summary must have at least 10 characters.",
@@ -428,17 +418,22 @@ const AddMovie = () => {
         return true;
     };
 
-    // Handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!validateForm()) return;
 
         const newMovie = {
             ...movieData,
-            email: user.email, // Add user email with movie data
+            // email: user.email,
+
+        // if (!user || !user.email) {
+        //     Swal.fire({
+        //         title: "Oops...",
+        //         text: "You must be logged in to add a movie.",
+        //     });
+        //     return;
         };
 
-        // Send data to the server
         fetch("http://localhost:3000/movie", {
             method: "POST",
             headers: {
@@ -452,6 +447,7 @@ const AddMovie = () => {
                 setMovieData({
                     photo: "",
                     title: "",
+                    email: "",
                     genre: [],
                     duration: "",
                     year: "",
@@ -461,7 +457,6 @@ const AddMovie = () => {
             })
             .catch((error) => {
                 console.error("Error adding movie:", error);
-                // toast.error("Failed to add movie.");
                 Swal.fire({
                     title: "Oops...",
                     text: "Failed to add movie.",
@@ -496,6 +491,19 @@ const AddMovie = () => {
                         onChange={handleChange}
                         className="w-full p-2 border rounded"
                         placeholder="Enter movie title"
+                    />
+                </div>
+
+                {/* Email */}
+                <div>
+                    <label className="block font-semibold mb-2">Email</label>
+                    <input
+                        type="text"
+                        name="email"
+                        value={movieData.email}
+                        onChange={handleChange}
+                        className="w-full p-2 border rounded"
+                        placeholder="Enter your email"
                     />
                 </div>
 
@@ -535,7 +543,7 @@ const AddMovie = () => {
                     <label className="block font-semibold mb-2">Release Year</label>
                     <select
                         name="year"
-                        value={movieData.releaseYear}
+                        value={movieData.year}
                         onChange={handleChange}
                         className="w-full p-2 border rounded"
                     >
@@ -551,12 +559,14 @@ const AddMovie = () => {
                 {/* Rating */}
                 <div>
                     <label className="block font-semibold mb-2">Rating</label>
-                    <Rating
-                        onClick={handleRatingChange}
-                        ratingValue={movieData.rating}
-                        size={30}
-                        allowHalfIcon
-                    />
+                    <div className="flex items-center space-x-4">
+                        <Rating
+                            onClick={handleRatingChange}
+                            ratingValue={movieData.rating}
+                            size={30}
+                            allowHalfIcon
+                        />
+                    </div>
                 </div>
 
                 {/* Summary */}

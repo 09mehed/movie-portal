@@ -35,10 +35,9 @@ const Header = () => {
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                         <NavLink to='/' className='pr-2'>Home</NavLink>
                         <NavLink to='allMovies' className='pr-2'>All Movies</NavLink>
-                        <NavLink to='addMovie' className='pr-2'>Add Movie</NavLink>
                         <NavLink to='favourite' className='pr-2'>My Favorites</NavLink>
                         <NavLink to='/share' className='pr-2'>Share</NavLink>
-                        <NavLink to='/addAMovie' className='pr-2'>Add A Movie</NavLink>
+                        <NavLink to='/addAMovie' className='pr-2'>Add Movie</NavLink>
                     </ul>
                 </div>
                 <a className="text-2xl font-bold">MOVIE PORTAL</a>
@@ -47,10 +46,9 @@ const Header = () => {
                 <ul className="menu menu-horizontal px-1 text-xl">
                     <NavLink to='/' className='pr-2'>Home</NavLink>
                     <NavLink to='allMovies' className='pr-2'>All Movies</NavLink>
-                    <NavLink to='addMovie' className='pr-2'>Add Movie</NavLink>
                     <NavLink to='favourite' className='pr-2'>My Favorites</NavLink>
                     <NavLink to='/share' className='pr-2'>Share</NavLink>
-                    <NavLink to='/addAMovie' className='pr-2'>Add A Movie</NavLink>
+                    <NavLink to='/addAMovie' className='pr-2'>Add Movie</NavLink>
                 </ul>
             </div>
             <div className="navbar-end gap-3">
