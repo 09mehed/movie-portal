@@ -1,27 +1,38 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../authProvider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const MyFavourites = () => {
     const [favorites, setFavorites] = useState([]);
-    const {user} = useContext(AuthContext)
-    const [userEmail, setUserEmail] = useState(user?.email || '');
+    const { user } = useContext(AuthContext)
+    // const [userEmail, setUserEmail] = useState(user?.email || '');
 
     useEffect(() => {
-    if (userEmail) {
-      fetch(`http://localhost:3000/favorites?email=${userEmail}`)
-        .then((response) => response.json())
-        .then((data) => setFavorites(data))
-        .catch((error) => console.error('Error fetching favorites:', error));
+        if (user && user.email) {
+            favorite(user.email);
+        }
+    }, [user]);
+
+    const favorite = (email) => {
+        fetch(`http://localhost:3000/favorites?email=${email}`)
+                .then((response) => response.json())
+                .then((data) => setFavorites(data))
+                .catch((error) => console.error('Error fetching favorites:', error));
     }
-  }, [userEmail]);
 
     const deleteFavorite = (movieId) => {
+        const updatedFavorites = favorites.filter((movie) => movie.movieId !== movieId);
+        setFavorites(updatedFavorites);
+
         fetch(`http://localhost:3000/favorites/${movieId}`, {
             method: 'DELETE',
         })
             .then((response) => response.json())
             .then(() => {
-                setFavorites(favorites.filter((movie) => movie.movieId !== movieId));
+                if (user && user.email) {
+                    favorite(user.email);
+                    Swal.fire("Movie Deleted Successfully")
+                }
             })
             .catch((error) => {
                 console.error("Error deleting movie:", error);
@@ -31,7 +42,7 @@ const MyFavourites = () => {
     return (
         <div className="w-11/12 mx-auto py-3">
             <h2 className="text-3xl font-bold text-center mb-6">My Favourites</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {favorites.map((movie) => (
                     <div
                         key={movie.movieId}
@@ -45,16 +56,17 @@ const MyFavourites = () => {
                         <h3 className="text-lg font-semibold">{movie.title}</h3>
                         <p className="text-gray-600">Genre: {movie.genre}</p>
                         <p className="text-gray-600">Rating: {movie.rating}</p>
+                        <button
+                            onClick={() => deleteFavorite(movie.movieId)}
+                            className="mt-4 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+                        >
+                            Delete Favorite
+                        </button>
                     </div>
                 ))}
-                <button
-                onClick={() => deleteFavorite(movieId)}
-                className="mt-4 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
-            >
-                Delete Favorite
-            </button>
+
             </div>
-            
+
         </div>
     );
 };

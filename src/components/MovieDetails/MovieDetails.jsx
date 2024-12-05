@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../authProvider/AuthProvider';
 
 const MovieDetails = () => {
     const { id } = useParams();
@@ -8,6 +9,7 @@ const MovieDetails = () => {
     const [movie, setMovie] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const {user} = useContext(AuthContext)
 
     useEffect(() => {
         fetch(`http://localhost:3000/movie/${id}`)
@@ -38,7 +40,7 @@ const MovieDetails = () => {
                 return response.json();
             })
             .then(() => {
-                alert("Movie deleted successfully!");
+                Swal.fire("Movie deleted successfully!");
                 navigate("/allMovies"); 
             })
             .catch((error) => {
@@ -51,6 +53,7 @@ const MovieDetails = () => {
         const favoriteMovie = {
             movieId: movie._id,
             title: movie.title,
+            email: user.email,
             posterUrl: movie.photo,
             genre: movie.genre,
             rating: movie.rating,

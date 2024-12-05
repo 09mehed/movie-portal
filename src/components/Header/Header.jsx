@@ -53,7 +53,7 @@ const Header = () => {
                     <NavLink to='/addAMovie' className='pr-2'>Add A Movie</NavLink>
                 </ul>
             </div>
-            <div className="navbar-end">
+            <div className="navbar-end gap-3">
                 {user && user?.email ? (
                     <div className="relative group">
                         <img
@@ -71,7 +71,7 @@ const Header = () => {
 
                 {
                     user && user?.email ? (<button onClick={handleSignOut} className="btn btn-primary">Log-Out</button>) : (<NavLink to='signin'>
-                        <button className="btn btn-primary">Login</button>
+                        <button className="btn btn-primary pr-3">Login</button>
                     </NavLink>)
                 }
             </div>

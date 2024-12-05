@@ -10,6 +10,7 @@ const Signup = () => {
     const location = useLocation()
     const navigate = useNavigate()
     const [error, setError] = useState()
+    const from = location.state?.from || '/';
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -35,12 +36,12 @@ const Signup = () => {
                         setUser((prevUser) => {
                             return { ...prevUser, displayName: name, photoURL: photoURL }
                         })
-                        navigate(location?.state?.from || "movie-details"); 
+                        navigate(from, { replace: true });
                     })
 
                 const user = res.user
                 setUser(user)
-                navigate(location?.state ? location.state : "/")
+                navigate(from, { replace: true });
                 toast.success("Successfully logged in!", {
                     position: "top-center",
                 });
@@ -49,7 +50,7 @@ const Signup = () => {
     const googleLoginHandler = () => {
         handleGoogleLogin()
             .then(() => {
-                navigate(location?.state ? location.state : "/")
+                navigate(location?.state?.from || "/", { replace: true });
             })
     }
     return (

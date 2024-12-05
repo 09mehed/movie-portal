@@ -17,6 +17,7 @@ import Share from './components/Share/Share';
 import AuthProvider from './authProvider/AuthProvider';
 import AddAMovie from './components/AddAMovie/AddAMovie';
 import MovieDetails from './components/MovieDetails/MovieDetails';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -30,11 +31,16 @@ const router = createBrowserRouter([
       },
       {
         path: 'allMovies',
-        element: <AllMovies></AllMovies>
+        element: <PrivateRoute>
+          <AllMovies></AllMovies>
+        </PrivateRoute>
       },
       {
-        path:'movie-details/:id',
-        element: <MovieDetails></MovieDetails>,
+        path: 'movie-details/:id',
+        element: 
+          <PrivateRoute>
+            <MovieDetails></MovieDetails>
+          </PrivateRoute>
       },
       {
         path: 'addMovie',

@@ -1,6 +1,6 @@
 import React, { useContext, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../authProvider/AuthProvider';
 
 const Signin = () => {
@@ -10,6 +10,8 @@ const Signin = () => {
     const navigate = useNavigate()
     const emailRef = useRef()
     const [email, setEmail] = useState("")
+    const location = useLocation()
+    const from = location.state?.from || '/';
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -19,7 +21,7 @@ const Signin = () => {
             .then(res => {
                 const user = res.user
                 setUser(user)
-                navigate("/");
+                navigate(from, { replace: true });
                 toast.success("Successfully logged in!", {
                     position: "top-center",
                 });

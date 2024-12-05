@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-// import { Link, useHistory } from 'react-router-dom';
 import { AuthContext } from '../../authProvider/AuthProvider';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,9 +8,9 @@ const Featured = ({ movies }) => {
 
     const handleSeeDetailsClick = (id) => {
         if (!user) {
-            navigate("/signin", { state: { from: `movie-details/${id}` } });
+            navigate("/signin", { state: { from: `/movie-details/${id}` } });
         } else {
-          navigate(`movie-details/${id}`);
+            navigate(`/movie-details/${id}`);
         }
       };
     
@@ -32,7 +31,6 @@ const Featured = ({ movies }) => {
                     <p>Year: {year}</p>
                     <p>Rating: {rating}</p>
                     <div className="card-actions justify-end">
-                        {/* <Link to={`/movie-details/${movies._id}`} className="btn btn-primary">See Details</Link> */}
                         <button className="btn btn-primary" onClick={() => handleSeeDetailsClick(_id)}>
                             See Details
                         </button>

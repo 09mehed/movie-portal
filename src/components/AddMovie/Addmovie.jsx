@@ -10,11 +10,11 @@ const Addmovie = ({ movie = [] }) => {
                 {
                     topRatedMovies.map(movies => <Featured key={movies._id} movies={movies}></Featured>)
                 }
-                <div className="text-center mt-6">
-                    <Link to="/allMovies" className=" bg-blue-500 text-white py-2 px-4 rounded-md">
-                        See All Movies
-                    </Link>
-                </div>
+            </div>
+            <div className="text-right my-6">
+                <Link to="/allMovies" className=" btn btn-primary text-white py-2 px-4 rounded-md">
+                    See All Movies
+                </Link>
             </div>
         </div>
     );
