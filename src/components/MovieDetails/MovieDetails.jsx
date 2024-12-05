@@ -57,6 +57,7 @@ const MovieDetails = () => {
             posterUrl: movie.photo,
             genre: movie.genre,
             rating: movie.rating,
+            summary: movie.summary
         };
 
         fetch("http://localhost:3000/favorites", {
@@ -86,7 +87,8 @@ const MovieDetails = () => {
 
     return (
         <div className="w-11/12 mx-auto py-3">
-            <h2 className="text-3xl font-bold text-center mb-6">{movie.title}</h2>
+            <h2 className="text-3xl font-bold text-center mb-3">{movie.title}</h2>
+            <p className="text-center py-3 text-2xl font-semibold">{movie.summary}</p>
             <div className="flex justify-center mb-6">
                 <img
                     src={movie.photo}
@@ -99,7 +101,6 @@ const MovieDetails = () => {
                 <p className="text-lg text-gray-700">Duration: {movie.duration} mins</p>
                 <p className="text-lg text-gray-700">Release Year: {movie.year}</p>
                 <p className="text-lg text-gray-700">Rating: {movie.rating}</p>
-                {/* <p className="mt-4">{movie.description}</p> */}
             </div>
 
             <div className="flex justify-center mt-8">
