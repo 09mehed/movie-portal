@@ -2,6 +2,7 @@ import React from 'react';
 import Banner from '../Banner/Banner';
 import { useLoaderData } from 'react-router-dom';
 import Addmovie from '../AddMovie/Addmovie';
+import TopRatedMovie from '../TopRatedMovie/TopRatedMovie';
 
 const Home = () => {
 
@@ -11,7 +12,7 @@ const Home = () => {
         <div>
             <Banner></Banner>
             <Addmovie movie={movie}></Addmovie>
-            
+            <TopRatedMovie></TopRatedMovie>
         </div>
     );
 };
