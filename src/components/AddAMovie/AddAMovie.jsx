@@ -424,14 +424,6 @@ const AddMovie = () => {
 
         const newMovie = {
             ...movieData,
-            // email: user.email,
-
-        // if (!user || !user.email) {
-        //     Swal.fire({
-        //         title: "Oops...",
-        //         text: "You must be logged in to add a movie.",
-        //     });
-        //     return;
         };
 
         fetch("http://localhost:3000/movie", {

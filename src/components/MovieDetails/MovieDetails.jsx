@@ -124,6 +124,14 @@ const MovieDetails = () => {
                 >
                     Add to Favorite
                 </button>
+                {/* <Link to={`update-movie/${_id}`}
+                    className="px-6 py-2 text-white bg-green-600 hover:bg-green-700 rounded-md shadow-md"
+                >
+                    Update Movie
+                </Link> */}
+                <button onClick={() => navigate(`/update-movie/${movie._id}`)} className="px-6 py-2 text-white bg-green-600 hover:bg-green-700 rounded-md shadow-md" >
+                    Update Movie
+                </button>
             </div>
         </div>
 

@@ -18,6 +18,7 @@ import AuthProvider from './authProvider/AuthProvider';
 import AddAMovie from './components/AddAMovie/AddAMovie';
 import MovieDetails from './components/MovieDetails/MovieDetails';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import UpdatedMovie from './components/UpdatedMovie/UpdatedMovie';
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,11 @@ const router = createBrowserRouter([
           <PrivateRoute>
             <MovieDetails></MovieDetails>
           </PrivateRoute>
+      },
+      {
+        path: 'update-movie/:id',
+        element: <UpdatedMovie></UpdatedMovie>,
+        loader: ({params}) => fetch(`http://localhost:3000/movie/${params.id}`)
       },
       {
         path: 'favourite',
