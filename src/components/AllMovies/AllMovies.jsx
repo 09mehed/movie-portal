@@ -25,7 +25,7 @@ const AllMovies = () => {
     return (
         <div className="w-11/12 mx-auto py-6">
             <Helmet>
-                <title>MOVIE PORTAL | AllMovies</title>
+                <title>Movie Portal | AllMovies</title>
             </Helmet>
             <h2 className="text-3xl font-bold text-center mb-6">All Movies</h2>
             <input type="search" value={searchQuery}

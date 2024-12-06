@@ -11,14 +11,13 @@ import Signin from './components/Signin/Signin';
 import Root from './components/layout/Root';
 import Home from './components/Home/Home';
 import AllMovies from './components/AllMovies/AllMovies';
-import Addmovie from './components/AddMovie/Addmovie';
 import Favourite from './components/Favourite/Favourite';
-import Share from './components/Share/Share';
 import AuthProvider from './authProvider/AuthProvider';
 import AddAMovie from './components/AddAMovie/AddAMovie';
 import MovieDetails from './components/MovieDetails/MovieDetails';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import UpdatedMovie from './components/UpdatedMovie/UpdatedMovie';
+import About from './components/About/About';
 
 const router = createBrowserRouter([
   {
@@ -51,8 +50,8 @@ const router = createBrowserRouter([
         element: <Favourite></Favourite>
       },
       {
-        path: 'share',
-        element: <Share></Share>
+        path: 'about',
+        element: <About></About>
       },
       {
         path: 'addAMovie',

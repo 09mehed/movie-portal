@@ -131,7 +131,7 @@ const AddMovie = () => {
     return (
         <div className="w-11/12 mx-auto py-5">
             <Helmet>
-                <title>MOVIE PORTAL | Add Movie</title>
+                <title>Movie Portal | Add Movie</title>
             </Helmet>
             <h2 className="text-3xl font-bold text-center mb-6">Add Movie</h2>
             <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-4">

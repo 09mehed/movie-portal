@@ -14,9 +14,9 @@ const Header = () => {
         }
     }, [user]);
     return (
-        <div className="navbar bg-base-100 w-11/12 mx-auto p-5 sticky top-0 z-50">
+        <div className="navbar bg-base-100 w-11/12 mx-auto py-5 sticky top-0 z-50">
             <Helmet>
-                <title>MOVIE PORTAL | Home</title>
+                <title>Movie Portal | Home</title>
             </Helmet>
             <div className="navbar-start">
                 <div className="dropdown">
@@ -40,7 +40,7 @@ const Header = () => {
                         <NavLink className={({ isActive }) => isActive ? "text-blue-500 pr-2" : "pr-2"} to='/' >Home</NavLink>
                         <NavLink to='allMovies' className={({ isActive }) => isActive ? "text-blue-500 pr-2" : "pr-2"}>All Movies</NavLink>
                         <NavLink to='favourite' className={({ isActive }) => isActive ? "text-blue-500 pr-2" : "pr-2"}>My Favorites</NavLink>
-                        <NavLink to='/share' className={({ isActive }) => isActive ? "text-blue-500 pr-2" : "pr-2"}>Share</NavLink>
+                        <NavLink to='/about' className={({ isActive }) => isActive ? "text-blue-500 pr-2" : "pr-2"}>About</NavLink>
                         <NavLink to='/addAMovie' className={({ isActive }) => isActive ? "text-blue-500 pr-2" : "pr-2"}>Add Movie</NavLink>
                     </ul>
                 </div>
@@ -51,7 +51,7 @@ const Header = () => {
                     <NavLink className={({ isActive }) => isActive ? "text-blue-500 pr-2" : "pr-2"} to='/' >Home</NavLink>
                     <NavLink to='allMovies' className={({ isActive }) => isActive ? "text-blue-500 pr-2" : "pr-2"}>All Movies</NavLink>
                     <NavLink to='favourite' className={({ isActive }) => isActive ? "text-blue-500 pr-2" : "pr-2"}>My Favorites</NavLink>
-                    <NavLink to='/share' className={({ isActive }) => isActive ? "text-blue-500 pr-2" : "pr-2"}>Share</NavLink>
+                    <NavLink to='/about' className={({ isActive }) => isActive ? "text-blue-500 pr-2" : "pr-2"}>About</NavLink>
                     <NavLink to='/addAMovie' className={({ isActive }) => isActive ? "text-blue-500 pr-2" : "pr-2"}>Add Movie</NavLink>
                 </ul>
             </div>

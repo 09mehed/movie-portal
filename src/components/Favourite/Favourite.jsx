@@ -43,7 +43,7 @@ const MyFavourites = () => {
     return (
         <div className="w-11/12 mx-auto py-3">
             <Helmet>
-                <title>MOVIE PORTAL | Favorite</title>
+                <title>Movie Portal | Favorite</title>
             </Helmet>
             <h2 className="text-3xl font-bold text-center mb-6">My Favourites</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
