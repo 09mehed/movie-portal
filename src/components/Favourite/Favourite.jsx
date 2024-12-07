@@ -16,7 +16,7 @@ const MyFavourites = () => {
     }, [user]);
 
     const favorite = (email) => {
-        fetch(`http://localhost:3000/favorites?email=${email}`)
+        fetch(`https://assignment-10-project.vercel.app/favorites?email=${email}`)
             .then((res) => res.json())
             .then((data) => setFavorites(data))
             .catch((error) => console.error('Error fetching favorites:', error));
@@ -26,7 +26,7 @@ const MyFavourites = () => {
         const updatedFavorites = favorites.filter((movie) => movie.movieId !== movieId);
         setFavorites(updatedFavorites);
 
-        fetch(`http://localhost:3000/favorites/${movieId}`, {
+        fetch(`https://assignment-10-project.vercel.app/favorites/${movieId}`, {
             method: 'DELETE',
         })
             .then((res) => res.json())
@@ -40,7 +40,7 @@ const MyFavourites = () => {
                             text: "Movie Deleted Successfully",
                             icon: "success",
                         }).then(() => {
-                            navigate('/allMovies');
+                            // navigate('/allMovies');
                         });
                     }
                 }
@@ -57,7 +57,7 @@ const MyFavourites = () => {
             </Helmet>
             <h2 className="text-3xl font-bold text-center mb-6">My Favourites</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {favorites.length > 0 ? (  // ফেভারিটস অ্যারে খালি নয় কিনা চেক করুন
+                {favorites.length > 0 ? (
                     favorites.map((movie) => (
                         <div key={movie.movieId} className="border rounded-md shadow-md p-4 flex flex-col items-center">
                             <img
@@ -67,13 +67,8 @@ const MyFavourites = () => {
                             />
                             <h3 className="text-lg font-semibold">{movie.title}</h3>
                             <p className="text-gray-600">Genre: {movie.genre}</p>
-
-                            {/* Year - যদি year নেই থাকে, "Not Available" দেখাবে */}
                             <p className="text-gray-600">Year: {movie.year ? movie.year : "Not Available"}</p>
-
-                            {/* Duration - যদি duration নেই থাকে, "Not Available" দেখাবে */}
                             <p className="text-gray-600">Duration: {movie.duration ? `${movie.duration} minutes` : "Not Available"}</p>
-
                             <p className="text-gray-600">Rating: {movie.rating}</p>
 
                             <button

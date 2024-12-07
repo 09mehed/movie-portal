@@ -1,7 +1,8 @@
 import React from 'react';
 import Featured from '../Featured/Featured'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 const Addmovie = ({ movie = [] }) => {
+    const navigate = useNavigate()
     const topRatedMovies = movie.sort((a, b) => b.rating - a.rating).slice(0, 6);
     return (
         <div className='w-11/12 mx-auto py-3'>
@@ -12,7 +13,7 @@ const Addmovie = ({ movie = [] }) => {
                 }
             </div>
             <div className="text-right my-6">
-                <Link to="/signin" className=" btn btn-primary text-white py-2 px-4 rounded-md">
+                <Link to="/allMovies" className=" btn btn-primary text-white py-2 px-4 rounded-md">
                     See All Movies
                 </Link>
             </div>

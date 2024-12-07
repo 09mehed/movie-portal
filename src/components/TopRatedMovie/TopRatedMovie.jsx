@@ -8,7 +8,7 @@ const TopRatedMovie = () => {
 
     useEffect(() => {
         // Fetch all movies
-        fetch("http://localhost:3000/movie")
+        fetch("https://assignment-10-project.vercel.app/movie")
             .then((res) => res.json())
             .then((data) => {
                 // Filter Featured Movies

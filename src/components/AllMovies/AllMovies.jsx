@@ -5,10 +5,13 @@ import { Link } from 'react-router-dom';
 const AllMovies = () => {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [searchQuery, setSearchQuery] = useState("");
+    const [searchQuery, setSearchQuery] = useState({
+        search: ""
+    });
+
 
     useEffect(() => {
-        fetch('http://localhost:3000/movie')
+        fetch('https://assignment-10-project.vercel.app/movie')
             .then((res) => res.json())
             .then((data) => {
                 setMovies(data);
@@ -17,9 +20,16 @@ const AllMovies = () => {
     }, []);
 
     if (loading) return <p>Loading...</p>;
+    const handleChange = e => {
+        const {name, value} = e.target
+        setSearchQuery({
+            ...searchQuery, 
+            [name]: value
+        })
+    }
 
     const filteredMovies = movies.filter((movie) =>
-        movie.title.toLowerCase().includes(searchQuery.toLowerCase())
+        movie.title.toLowerCase().includes(searchQuery.search.toLowerCase())
     );
 
     return (
@@ -28,8 +38,9 @@ const AllMovies = () => {
                 <title>Movie Portal | AllMovies</title>
             </Helmet>
             <h2 className="text-3xl font-bold text-center mb-6">All Movies</h2>
-            <input type="search" value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)} name="search" id="" placeholder='search movie' className="w-full text-xl mb-6 p-2 border rounded-md text-center" />
+            
+            <input type="search" value={searchQuery.search}
+                onChange={handleChange} name="search" id="" placeholder='search movie' className="w-full text-xl mb-6 p-2 border rounded-md text-center" />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {
                     filteredMovies.length > 0 ? (

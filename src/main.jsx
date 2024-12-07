@@ -15,7 +15,6 @@ import Favourite from './components/Favourite/Favourite';
 import AuthProvider from './authProvider/AuthProvider';
 import AddAMovie from './components/AddAMovie/AddAMovie';
 import MovieDetails from './components/MovieDetails/MovieDetails';
-import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import UpdatedMovie from './components/UpdatedMovie/UpdatedMovie';
 import About from './components/About/About';
 
@@ -27,7 +26,7 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>,
-        loader: () => fetch('http://localhost:3000/movie')
+        loader: () => fetch('https://assignment-10-project.vercel.app/movie')
       },
       {
         path: 'allMovies',
@@ -36,11 +35,12 @@ const router = createBrowserRouter([
       {
         path: 'movie-details/:id',
         element: <MovieDetails></MovieDetails>
+       
       },
       {
         path: 'update-movie/:id',
         element: <UpdatedMovie></UpdatedMovie>,
-        loader: ({params}) => fetch(`http://localhost:3000/movie/${params.id}`)
+        loader: ({params}) => fetch(`https://assignment-10-project.vercel.app/movie/${params.id}`)
       },
       {
         path: 'favourite',

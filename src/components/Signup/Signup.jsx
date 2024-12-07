@@ -9,7 +9,7 @@ const Signup = () => {
     const location = useLocation()
     const navigate = useNavigate()
     const [error, setError] = useState()
-    const from = location.state?.from || '/';
+    const [isRegistered, setIsRegistered] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -28,7 +28,7 @@ const Signup = () => {
             return;
         }
         handleRegister(email, password)
-
+        
             .then(res => {
                 manageProfile({ displayName: name, photoURL: photoURL })
                     .then(() => {
@@ -42,17 +42,13 @@ const Signup = () => {
                             text: "Account created successfully",
                             icon: "success",
                         });
-                        navigate(from, { replace: true });
+                        const redirectPath = location.state?.from?.pathname || "/allMovies";
+                        navigate(redirectPath, { replace: true });
                     })
 
                 const user = res.user
                 setUser(user)
                 navigate(from, { replace: true });
-                Swal.fire({
-                    title: "Success!",
-                    text: "User loged in  Successfully",
-                    icon: "success",
-                })
             })
     }
     const googleLoginHandler = () => {

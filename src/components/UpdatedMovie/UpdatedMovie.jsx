@@ -21,7 +21,7 @@ const UpdatedMovie = () => {
 
         const updatedMovie = { _id, photo, title, email, genre, duration, year, summary }
 
-        fetch(`http://localhost:3000/movie/${_id}`, {
+        fetch(`https://assignment-10-project.vercel.app/movie/${_id}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json'

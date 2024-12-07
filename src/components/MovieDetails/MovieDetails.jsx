@@ -12,7 +12,7 @@ const MovieDetails = () => {
     const {user} = useContext(AuthContext)
 
     useEffect(() => {
-        fetch(`http://localhost:3000/movie/${id}`)
+        fetch(`https://assignment-10-project.vercel.app/movie/${id}`)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -30,7 +30,7 @@ const MovieDetails = () => {
     }, [id]);
 
     const handleDelete = () => {
-        fetch(`http://localhost:3000/movie/${id}`, {
+        fetch(`https://assignment-10-project.vercel.app/movie/${id}`, {
             method: "DELETE",
         })
             .then((response) => {
@@ -62,7 +62,7 @@ const MovieDetails = () => {
             summary: movie.summary
         };
 
-        fetch("http://localhost:3000/favorites", {
+        fetch("https://assignment-10-project.vercel.app/favorites", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -77,7 +77,7 @@ const MovieDetails = () => {
             })
             .then(() => {
                 Swal.fire("Movie added to favorites successfully!");
-                navigate("/favourite");
+                // navigate("/favourite");
             })
             .catch((error) => {
                 Swal.fire("Error adding movie to favorites. Please try again.");

@@ -11,12 +11,13 @@ const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
     const [userProfile, setUserProfile] = useState(null);
-    const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+    const [theme, setTheme] = useState("light");
 
     const toggleTheme = () => {
+        // const newTheme = theme ? "black" : "#ffffff";
         const newTheme = theme === "light" ? "dark" : "light";
         setTheme(newTheme);
-        localStorage.setItem("theme", newTheme);
+        // return newTheme;
     };
 
     useEffect(() => {

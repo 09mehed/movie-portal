@@ -5,7 +5,7 @@ const PopularMovie = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch("http://localhost:3000/movie")
+        fetch("https://assignment-10-project.vercel.app/movie")
             .then((res) => {
                 if (!res.ok) throw new Error("Failed to fetch movies.");
                 return res.json();
