@@ -2,6 +2,7 @@ import React, { useContext, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../authProvider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Signin = () => {
 
@@ -11,7 +12,7 @@ const Signin = () => {
     const emailRef = useRef()
     const [email, setEmail] = useState("")
     const location = useLocation()
-    const from = location.state?.from || '/';
+    const from = location.state?.from || '/movie-details';
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -22,9 +23,11 @@ const Signin = () => {
                 const user = res.user
                 setUser(user)
                 navigate(from, { replace: true });
-                toast.success("Successfully logged in!", {
-                    position: "top-center",
-                });
+                Swal.fire({
+                    title: "Success!",
+                    text: "User loged in  Successfully",
+                    icon: "success",
+                })
             })
             .catch(err => {
                 setError(err.message);
@@ -39,22 +42,26 @@ const Signin = () => {
                 const user = res.user;
                 setUser(user);
                 navigate("/");
-                toast.success("Successfully logged in with Google!", {
-                    position: "top-center",
-                });
+                Swal.fire({
+                    title: "Success!",
+                    text: "User loged in  Successfully",
+                    icon: "success",
+                })
             })
             .catch((err) => {
                 setError(err.message);
-                toast.error("Google login failed! Please try again.", {
-                    position: "top-center",
-                });
+                Swal.fire({
+                    title: "Success!",
+                    text: "User loged in  Successfully",
+                    icon: "success",
+                })
             });
     }
 
     return (
         <div className="w-11/12 mx-auto py-5">
             <Helmet>
-                <title>MOVIE PORTAL | login</title>
+                <title>Movie Portal | login</title>
             </Helmet>
             <div className="min-h-screen flex items-center justify-center bg-gray-100">
                 <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">

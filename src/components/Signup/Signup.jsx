@@ -2,8 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../authProvider/AuthProvider';
 import { Helmet } from 'react-helmet';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import Swal from 'sweetalert2';
 
 const Signup = () => {
     const { handleRegister, manageProfile, handleGoogleLogin, setUser } = useContext(AuthContext)
@@ -33,30 +32,46 @@ const Signup = () => {
             .then(res => {
                 manageProfile({ displayName: name, photoURL: photoURL })
                     .then(() => {
-                        setUser((prevUser) => {
-                            return { ...prevUser, displayName: name, photoURL: photoURL }
-                        })
+                        setUser({
+                            ...user, 
+                            displayName: name,
+                            photoURL: photoURL,
+                        });
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Account created successfully",
+                            icon: "success",
+                        });
                         navigate(from, { replace: true });
                     })
 
                 const user = res.user
                 setUser(user)
                 navigate(from, { replace: true });
-                toast.success("Successfully logged in!", {
-                    position: "top-center",
-                });
+                Swal.fire({
+                    title: "Success!",
+                    text: "User loged in  Successfully",
+                    icon: "success",
+                })
             })
     }
     const googleLoginHandler = () => {
         handleGoogleLogin()
-            .then(() => {
-                navigate(location?.state?.from || "/", { replace: true });
+            .then((res) => {
+                const user = res.user;
+                setUser(user);
+                Swal.fire({
+                    title: "Success!",
+                    text: "Logged in successfully with Google",
+                    icon: "success",
+                });
+                navigate(from, { replace: true });
             })
     }
     return (
         <div className="w-11/12 mx-auto py-5">
             <Helmet>
-                <title>MOVIE PORTAL | register</title>
+                <title>Movie Portal | register</title>
             </Helmet>
             <div className="h-[700px] flex items-center justify-center bg-gray-100">
                 <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">

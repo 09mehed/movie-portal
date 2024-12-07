@@ -2,11 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../authProvider/AuthProvider';
 import Swal from 'sweetalert2';
 import { Helmet } from 'react-helmet';
+import { useNavigate } from 'react-router-dom';
 
 const MyFavourites = () => {
     const [favorites, setFavorites] = useState([]);
     const { user } = useContext(AuthContext)
-    // const [userEmail, setUserEmail] = useState(user?.email || '');
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (user && user.email) {
@@ -28,11 +29,20 @@ const MyFavourites = () => {
         fetch(`http://localhost:3000/favorites/${movieId}`, {
             method: 'DELETE',
         })
-            .then((response) => response.json())
-            .then(() => {
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
                 if (user && user.email) {
                     favorite(user.email);
-                    Swal.fire("Movie Deleted Successfully")
+                    if (data.deletedCount > 0) {
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Movie Deleted Successfully",
+                            icon: "success",
+                        }).then(() => {
+                            navigate('/allMovies');
+                        });
+                    }
                 }
             })
             .catch((error) => {

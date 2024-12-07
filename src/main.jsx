@@ -35,10 +35,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'movie-details/:id',
-        element: 
-          <PrivateRoute>
-            <MovieDetails></MovieDetails>
-          </PrivateRoute>
+        element: <MovieDetails></MovieDetails>
       },
       {
         path: 'update-movie/:id',

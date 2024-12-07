@@ -1,12 +1,12 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import { Rating } from 'react-simple-star-rating';
 import Swal from 'sweetalert2';
 
 const UpdatedMovie = () => {
-
     const movie = useLoaderData()
-    const {_id, photo, title, email, genre, duration, year, summary} = movie
+    const navigate = useNavigate()
+    const { _id, photo, title, email, genre, duration, year, summary } = movie
     const handleUpdateMovie = event => {
         event.preventDefault()
 
@@ -19,7 +19,7 @@ const UpdatedMovie = () => {
         const year = form.year.value
         const summary = form.summary.value
 
-        const updatedMovie = {_id, photo, title, email, genre, duration, year, summary}
+        const updatedMovie = { _id, photo, title, email, genre, duration, year, summary }
 
         fetch(`http://localhost:3000/movie/${_id}`, {
             method: "PUT",
@@ -28,11 +28,19 @@ const UpdatedMovie = () => {
             },
             body: JSON.stringify(updatedMovie)
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            Swal.fire("Movie updated successfully")
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.modifiedCount > 0) {
+                    Swal.fire({
+                        title: "Success!",
+                        text: "Movie updated successfully",
+                        icon: "success",
+                    }).then(() => {
+                        navigate('/allMovies');
+                    });
+                }
+            })
     }
 
     return (
