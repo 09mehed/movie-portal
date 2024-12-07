@@ -12,7 +12,7 @@ const Addmovie = ({ movie = [] }) => {
                 }
             </div>
             <div className="text-right my-6">
-                <Link to="/allMovies" className=" btn btn-primary text-white py-2 px-4 rounded-md">
+                <Link to="/signin" className=" btn btn-primary text-white py-2 px-4 rounded-md">
                     See All Movies
                 </Link>
             </div>

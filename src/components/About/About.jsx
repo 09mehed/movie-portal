@@ -24,9 +24,16 @@ const About = () => {
             </div>
             <div className="collapse collapse-arrow bg-base-200 my-3">
                 <input type="radio" name="movie-accordion" />
-                <div className="collapse-title text-2xl font-bold">Comedy Movies</div>
+                <div className="collapse-title text-2xl font-bold">Drama Movies</div>
                 <div className="collapse-content">
                     <p>The comedy film is a film genre that emphasizes humor. These films are designed to amuse audiences and make them laugh. Films in this genre typically have a happy ending, with dark comedy being an exception to this rule. Comedy is one of the oldest genres in film, and it is derived from classical comedy in theatre.</p>
+                </div>
+            </div>
+            <div className="collapse collapse-arrow bg-base-200 my-3">
+                <input type="radio" name="movie-accordion" />
+                <div className="collapse-title text-2xl font-bold">Horror Movies</div>
+                <div className="collapse-content">
+                    <p>Horror films often explore dark subject matter and may deal with transgressive topics or themes. Broad elements include monsters, apocalyptic events, and religious or folk beliefs. Horror films have existed for more than a century.</p>
                 </div>
             </div>
         </div>

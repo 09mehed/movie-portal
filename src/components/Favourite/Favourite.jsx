@@ -17,9 +17,9 @@ const MyFavourites = () => {
 
     const favorite = (email) => {
         fetch(`http://localhost:3000/favorites?email=${email}`)
-                .then((response) => response.json())
-                .then((data) => setFavorites(data))
-                .catch((error) => console.error('Error fetching favorites:', error));
+            .then((res) => res.json())
+            .then((data) => setFavorites(data))
+            .catch((error) => console.error('Error fetching favorites:', error));
     }
 
     const deleteFavorite = (movieId) => {
@@ -57,27 +57,36 @@ const MyFavourites = () => {
             </Helmet>
             <h2 className="text-3xl font-bold text-center mb-6">My Favourites</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {favorites.map((movie) => (
-                    <div
-                        key={movie.movieId}
-                        className="border rounded-md shadow-md p-4 flex flex-col items-center"
-                    >
-                        <img
-                            src={movie.posterUrl}
-                            alt={movie.title}
-                            className="w-full h-60 object-cover rounded-md mb-4"
-                        />
-                        <h3 className="text-lg font-semibold">{movie.title}</h3>
-                        <p className="text-gray-600">Genre: {movie.genre}</p>
-                        <p className="text-gray-600">Rating: {movie.rating}</p>
-                        <button
-                            onClick={() => deleteFavorite(movie.movieId)}
-                            className="mt-4 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
-                        >
-                            Delete Favorite
-                        </button>
-                    </div>
-                ))}
+                {favorites.length > 0 ? (  // ফেভারিটস অ্যারে খালি নয় কিনা চেক করুন
+                    favorites.map((movie) => (
+                        <div key={movie.movieId} className="border rounded-md shadow-md p-4 flex flex-col items-center">
+                            <img
+                                src={movie.posterUrl}
+                                alt={movie.title}
+                                className="w-full h-60 object-cover rounded-md mb-4"
+                            />
+                            <h3 className="text-lg font-semibold">{movie.title}</h3>
+                            <p className="text-gray-600">Genre: {movie.genre}</p>
+
+                            {/* Year - যদি year নেই থাকে, "Not Available" দেখাবে */}
+                            <p className="text-gray-600">Year: {movie.year ? movie.year : "Not Available"}</p>
+
+                            {/* Duration - যদি duration নেই থাকে, "Not Available" দেখাবে */}
+                            <p className="text-gray-600">Duration: {movie.duration ? `${movie.duration} minutes` : "Not Available"}</p>
+
+                            <p className="text-gray-600">Rating: {movie.rating}</p>
+
+                            <button
+                                onClick={() => deleteFavorite(movie.movieId)}
+                                className="mt-4 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+                            >
+                                Delete Favorite
+                            </button>
+                        </div>
+                    ))
+                ) : (
+                    <p>No favorites found.</p>
+                )}
 
             </div>
 
@@ -86,3 +95,28 @@ const MyFavourites = () => {
 };
 
 export default MyFavourites;
+
+
+// {favorites.map((movie) => (
+//     <div
+//         key={movie.movieId}
+//         className="border rounded-md shadow-md p-4 flex flex-col items-center"
+//     >
+//         <img
+//             src={movie.posterUrl}
+//             alt={movie.title}
+//             className="w-full h-60 object-cover rounded-md mb-4"
+//         />
+//         <h3 className="text-2xl font-semibold">{movie.title}</h3>
+//         <p className="text-gray-600">Genre: {movie.genre}</p>
+//         <p className="text-gray-600">Year: {movie.year ? movie.year : "Not Available"}</p>
+//         <p className="text-gray-600">Duration: {movie.duration ? `${movie.duration} minutes` : "Not Available"}</p>
+//         <p className="text-gray-600">Rating: {movie.rating}</p>
+//         <button
+//             onClick={() => deleteFavorite(movie.movieId)}
+//             className="mt-4 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+//         >
+//             Delete Favorite
+//         </button>
+//     </div>
+// ))}

@@ -43,6 +43,8 @@ const AllMovies = () => {
                                 />
                                 <h3 className="mt-4 text-lg font-bold">{movie.title}</h3>
                                 <p className="text-sm text-gray-600">Genre: {movie.genre}</p>
+                                <p className="text-sm text-gray-600">Year: {movie.year}</p>
+                                <p className="text-sm text-gray-600">Duration: {movie.duration}</p>
                                 <p className="text-sm text-gray-600">Rating: {movie.rating}</p>
                                 <Link
                                     to={`/movie-details/${movie._id}`}

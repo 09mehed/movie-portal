@@ -56,6 +56,8 @@ const MovieDetails = () => {
             email: user.email,
             posterUrl: movie.photo,
             genre: movie.genre,
+            year: movie.year,
+            duration: movie.duration,
             rating: movie.rating,
             summary: movie.summary
         };

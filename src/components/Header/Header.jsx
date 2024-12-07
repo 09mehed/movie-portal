@@ -11,8 +11,16 @@ const Header = () => {
     useEffect(() => {
         if (user) {
             setUserPhoto(user.photoURL || userIcon);
+
+            // theme
+            const systemColor = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (systemColor && theme !== "dark") {
+                toggleTheme();
+            } else if (!systemColor && theme !== "light") {
+                toggleTheme();
+            }
         }
-    }, [user]);
+    }, [user, theme, toggleTheme]);
     return (
         <div className="navbar bg-base-100 w-11/12 mx-auto py-5 sticky top-0 z-50">
             <Helmet>
@@ -56,9 +64,9 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end gap-3">
-                <button onClick={toggleTheme} className="btn btn-secondary">
+                {/* <button onClick={toggleTheme} className="btn btn-secondary">
                     {theme === "light" ? "Dark Mode" : "Light Mode"}
-                </button>
+                </button> */}
                 {user && user?.email ? (
                     <div className="relative group">
                         <img
