@@ -5,8 +5,12 @@ import { AuthContext } from '../../authProvider/AuthProvider';
 import { Helmet } from 'react-helmet';
 
 const Header = () => {
-    const { user, handleSignOut,theme, toggleTheme } = useContext(AuthContext)
+    const { user, handleSignOut, theme, toggleTheme } = useContext(AuthContext)
     const [userPhoto, setUserPhoto] = useState(user?.photoURL || userIcon);
+
+    useEffect(() => {
+        setUserPhoto(user?.photoURL || userIcon);
+    }, [user]);
 
     return (
         <div className={`bg-${theme == "light" ? "white" : "black"} text-${theme == "light" ? "black" : "white"} sticky top-0 z-50`}>
@@ -55,6 +59,7 @@ const Header = () => {
                     <button onClick={toggleTheme} className="btn btn-secondary">
                         {theme === "light" ? "Dark Mode" : "Light Mode"}
                     </button>
+
                     {user && user?.email ? (
                         <div className="relative group">
                             <img
