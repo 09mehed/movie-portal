@@ -1,8 +1,54 @@
-# React + Vite
+# Movie Portal
+# Live Site: https://comforting-rolypoly-3a47a9.netlify.app/
+# Feature
+## Comprehensive Movie Database
+ Explore a wide variety of movies with detailed information, including:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Movie Poster
+- Title
+- Genre
+- Duration
+- Release Year
+- Rating
+- Summary
+## Dynamic Filtering
+ Effortlessly browse movies by:
 
-Currently, two official plugins are available:
+- Categories
+- Highest-rated films
+- Personalized favorite lists
+## Interactive Movie Management
+ Manage your movie collection with ease:
+ 
+- Add new movies
+- Edit movie details
+- Delete unwanted movies
+  
+## Private and Public Routes
+ Enjoy seamless navigation with:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Protected routes for personalized features
+- Public routes for general browsing
+## Responsive Design
+ Fully optimized for:
+
+- Mobile devices
+- Tablets
+- Desktops
+## Google Authentication
+Login and register securely with Google integration.
+
+## Favorite Movies List
+Create and manage a list of your favorite movies:
+
+- Easy access
+- Quick modifications
+## Real-Time Notifications
+ Get instant feedback with:
+
+- Sweet alerts for all actions
+## Advanced Search
+Quickly find movies on the "All Movies" page with powerful search functionality.
+
+## Dark/Light Theme Toggle
+Switch between themes for a personalized viewing experience.
